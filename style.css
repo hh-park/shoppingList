@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  /* padding 이나 border가 width/height에 포함될 수 있도록 */
+}
+
+ul {
+  padding: 0;
+}
+
+button {
+  outline: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: #ced3df;
+  text-align: center;
+}
+
+.list {
+  width: 400px;
+  margin: auto;
+  /* block level이라서 margin이 제일 오른쪽에만 들어가있음*/
+  background-color: #f1f0f7;
+  border-radius: 20px;
+  -webkit-box-shadow: 12px 10px 15px -5px #b5b5b5;
+  box-shadow: 12px 10px 15px -5px #b5b5b5;
+}
+
+.header {
+  height: 48px;
+  padding: 8px;
+  font-size: 24px;
+  background: rgb(237, 193, 211);
+  background: linear-gradient(
+    160deg,
+    rgba(237, 193, 211, 1) 0%,
+    rgba(219, 192, 216, 1) 35%,
+    rgba(127, 188, 242, 1) 100%
+  );
+  border-radius: 20px 20px 0 0;
+  color: white;
+}
+
+.items {
+  height: 500px;
+  overflow-y: auto;
+  /* TODO height: 반응형으로 바꾸기
+  overflow-y: 자동으로 scroll bar */
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px;
+}
+
+.item__delete {
+  font-size: 16px;
+  transition: all 300ms ease-in;
+}
+
+.item__delete:hover {
+  color: red;
+  transform: scale(1.1);
+}
+
+.item__divider {
+  width: 90%;
+  height: 1px;
+  background-color: lightgray;
+  margin: auto;
+  /* div는 block level이기 때문에 자동적으로 오른쪽에 margin있음 */
+}
+.footer {
+  background: rgb(237, 193, 211);
+  background: linear-gradient(
+    160deg,
+    rgba(237, 193, 211, 1) 0%,
+    rgba(219, 192, 216, 1) 35%,
+    rgba(127, 188, 242, 1) 100%
+  );
+  border-radius: 0 0 20px 20px;
+  color: white;
+}
+
+.footer__input {
+  width: 100%;
+  height: 32px;
+  border: none;
+  outline: none;
+  /* outline: input박스 선택하면 outline이 생기는 것 */
+  font-size: 24px;
+  padding: 0 16px;
+}
+
+.footer__button {
+  width: 48px;
+  height: 48px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 28px;
+  transition: transform 300ms ease-in;
+}
+
+.footer__button:hover {
+  transform: scale(1.1);
+}
