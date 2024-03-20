@@ -1,7 +1,12 @@
 const items = document.querySelector('.items');
+const form = document.querySelector('.new-form');
 const input = document.querySelector('.footer__input');
 const addBtn = document.querySelector('.footer__button');
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  onAdd();
+});
 function onAdd() {
   // 1. Get input text
   const text = input.value;
@@ -20,14 +25,47 @@ function onAdd() {
   input.focus();
 }
 
+/* 
+// replace with form tag
 addBtn.addEventListener('click', () => {
   onAdd();
 });
 
+input.addEventListener('keydown', (event) => {
+  if (event.isComposing) {
+    return;
+  }
+  if (event.key === 'Enter') {
+    onAdd();
+  }
+});
+*/
+
+items.addEventListener('click', (e) => {
+  const id = e.target.dataset.id;
+  if (id) {
+    const toDelete = document.querySelector(`.item__row[data-id="${id}"`);
+    toDelete.remove();
+    // items.removeChild(e.target.parentNode.parentNode.parentNode);
+  }
+});
+
+let id = 0; // better to have UUID, object's hash code
 function createItem(text) {
   const itemRow = document.createElement('li');
   itemRow.setAttribute('class', 'item__row');
-
+  itemRow.setAttribute('data-id', id);
+  itemRow.innerHTML = `
+    <div class="item">
+      <span class="item__name">${text}</span>
+      <button class="item__delete">
+        <i data-id=${id} class="fa-solid fa-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="item__divider"></div>
+  `;
+  id++;
+  /*
   const item = document.createElement('div');
   item.setAttribute('class', 'item');
 
@@ -38,8 +76,8 @@ function createItem(text) {
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('class', 'item__delete');
   deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
-  deleteBtn.addEventListener('click', () => {
-    items.removeChild(itemRow);
+  deleteBtn.addEventListener('click', (event) => {
+    // items.removeChild(itemRow);
   });
 
   const itemDivider = document.createElement('div');
@@ -50,14 +88,9 @@ function createItem(text) {
 
   itemRow.appendChild(item);
   itemRow.appendChild(itemDivider);
+  */
   return itemRow;
 }
-
-input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    onAdd();
-  }
-});
 
 const inputArea = document.querySelector('#inputArea');
 const shopping = document.querySelector('.shopping');
